@@ -513,10 +513,10 @@ async def generateb50(b35: list, b15: list, nickname: str, qq, dani: int, type: 
     # rating推荐
     if type == 'b50':
         if is_rating_tj:
-            b35max = b35[0]['ra']
-            b35min = b35[-1]['ra']
-            b15max = b15[0]['ra']
-            b15min = b15[-1]['ra']
+            b35max = b35[0]['ra'] if b35 else 0
+            b35min = b35[-1]['ra'] if b35 else 0
+            b15max = b15[0]['ra'] if b15 else 0
+            b15min = b15[-1]['ra'] if b15 else 0
             ratingbase = await rating_tj(b35max, b35min, b15max, b15min)
             b50.paste(ratingbase, (60, 197), ratingbase)
 
