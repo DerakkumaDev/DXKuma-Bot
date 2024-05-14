@@ -1,4 +1,4 @@
-RULE: str = r"^(香草|想草|xc)(迪拉熊|滴蜡熊|dlx)$"
+PATTERN: str = r"^(香草|想草|xc)(迪拉熊|滴蜡熊|dlx)$"
 RESULTS: dict[int, str] = {
     1: "变态！！！",
     2: "走开！！！",

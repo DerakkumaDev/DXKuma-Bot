@@ -6,7 +6,7 @@ from nonebot.internal.matcher import Matcher
 
 import lang.eat_break as lang
 
-eat_break: Type[Matcher] = on_regex(lang.RULE)
+eat_break: Type[Matcher] = on_regex(lang.PATTERN)
 
 
 @eat_break.handle()

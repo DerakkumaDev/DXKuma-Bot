@@ -12,7 +12,7 @@ import lang.rand_pic as lang
 from util.Config import config
 from util.rand_pic.data import update_count, get_time
 
-kuma_pic: Type[Matcher] = on_regex(lang.RULE)
+kuma_pic: Type[Matcher] = on_regex(lang.PATTERN)
 
 
 @kuma_pic.handle()

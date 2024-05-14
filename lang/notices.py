@@ -2,7 +2,7 @@ from pathlib import Path
 
 from util.Path import RESOURCE_ROOT_PATH
 
-RULE: str = "注意事项"
+PATTERN: str = "注意事项"
 NOTICES_MSG: str = (
     "注意事项\n"
     "❶本bot为娱乐性质bot，不支持更新查分器，小黑屋等科技功能\n"

@@ -7,7 +7,7 @@ from nonebot.rule import to_me
 
 import lang.love_you as lang
 
-wxhn: Type[Matcher] = on_fullmatch(lang.RULE, rule=to_me())
+wxhn: Type[Matcher] = on_fullmatch(lang.PATTERN, rule=to_me())
 
 
 @wxhn.handle()

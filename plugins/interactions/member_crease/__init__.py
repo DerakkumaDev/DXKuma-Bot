@@ -30,10 +30,7 @@ async def _(bot: Bot, event: GroupIncreaseNoticeEvent) -> None:
     user_info: dict[str, any] = await bot.get_stranger_info(
         user_id=int(qq), no_cache=False
     )
-    if user_info:
-        user_name: str = user_info["nickname"]
-    else:
-        user_name: str = "新人"
+    user_name: str = user_info["nickname"]
     if event.group_id in config.spec_groups:
         text: str = lang.INCREASE_MSG_SPEC
     else:
@@ -52,10 +49,7 @@ async def _(bot: Bot, event: GroupDecreaseNoticeEvent) -> None:
     user_info: dict[str, any] = await bot.get_stranger_info(
         user_id=int(qq), no_cache=False
     )
-    if user_info:
-        user_name: str = user_info["nickname"]
-    else:
-        user_name: str = "群友"
+    user_name: str = user_info["nickname"]
     if event.group_id in config.spec_groups:
         text: str = lang.DECREASE_MSG_SPEC
     else:

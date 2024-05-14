@@ -9,7 +9,7 @@ from nonebot.internal.matcher import Matcher
 
 import lang.sa_what as lang
 
-sa_what: Type[Matcher] = on_regex(lang.RULE)
+sa_what: Type[Matcher] = on_regex(lang.PATTERN)
 
 
 @sa_what.handle()

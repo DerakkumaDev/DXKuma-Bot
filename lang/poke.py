@@ -2,7 +2,7 @@ from pathlib import Path
 
 from util.Path import KUMA_PIC_ROOT_PATH
 
-RULE: str = r"^(戳屁)(屁|股)$"
+PATTERN: str = r"^(戳屁)(屁|股)$"
 RESULTS: dict[int, str] = {
     1: "不可以戳迪拉熊的屁股啦~",
     2: "你怎么能戳迪拉熊的屁股！",

@@ -4,7 +4,7 @@ from nonebot.adapters.onebot import V11Adapter as Adapter
 from util.Path import PLUGIN_ROOT_PATH
 
 
-def nonebot_init():
+def nonebot_init() -> None:
     # 初始化 NoneBot
     nonebot.init()
 

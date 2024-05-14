@@ -7,7 +7,7 @@ from nonebot.internal.matcher import Matcher
 
 import lang.roll as lang
 
-roll: Type[Matcher] = on_regex(lang.RULE)
+roll: Type[Matcher] = on_regex(lang.PATTERN)
 
 
 @roll.handle()

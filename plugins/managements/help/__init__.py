@@ -6,7 +6,7 @@ from nonebot.internal.matcher import Matcher
 
 import lang.help as lang
 
-all_help: Type[Matcher] = on_regex(lang.RULE)
+all_help: Type[Matcher] = on_regex(lang.PATTERN)
 
 
 @all_help.handle()

@@ -2,7 +2,6 @@ import datetime
 import json
 from datetime import date
 from pathlib import Path
-from typing import Any
 
 from util.Path import DATA_DIR_PATH
 
@@ -19,7 +18,7 @@ def get_time() -> str:
 
 async def update_count(time, qq: str, type_name: str) -> None:
     with open(DATABASE_PATH, "r") as f:
-        count_data = json.load(f)
+        count_data: dict = json.load(f)
     if qq not in count_data or time not in count_data:
         count_data.setdefault(qq, {})
         count_data[qq].setdefault(time, {"kuma": 0, "kuma_r18": 0})
@@ -28,10 +27,10 @@ async def update_count(time, qq: str, type_name: str) -> None:
         json.dump(count_data, f, ensure_ascii=False, indent=4)
 
 
-async def gen_rank(time: str) -> list[tuple[Any, Any]]:
+async def gen_rank(time: str) -> list[tuple[any, any]]:
     with open(DATABASE_PATH, "r") as f:
         count_data: dict = json.load(f)
-    leaderboard: list[tuple[Any, Any]] = []
+    leaderboard: list[tuple[any, any]] = []
     for qq, qq_data in count_data.items():
         if time in qq_data:
             total_count = qq_data[time]["kuma"] + qq_data[time]["kuma_r18"]

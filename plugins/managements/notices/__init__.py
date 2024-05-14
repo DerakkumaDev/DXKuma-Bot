@@ -7,7 +7,7 @@ from nonebot.rule import to_me
 
 import lang.notices as lang
 
-zysx: Type[Matcher] = on_fullmatch(lang.RULE, rule=to_me())
+zysx: Type[Matcher] = on_fullmatch(lang.PATTERN, rule=to_me())
 
 
 @zysx.handle()
