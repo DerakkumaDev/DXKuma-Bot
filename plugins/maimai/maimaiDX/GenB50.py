@@ -114,19 +114,19 @@ def compute_record(records: list):
         fc = record["fc"]
         fs = record["fs"]
 
-        if achieve >= 80.0000:
+        if achieve >= 80.0:
             output["clear"] += 1
-        if achieve >= 97.0000:
+        if achieve >= 97.0:
             output["s"] += 1
-        if achieve >= 98.0000:
+        if achieve >= 98.0:
             output["sp"] += 1
-        if achieve >= 99.0000:
+        if achieve >= 99.0:
             output["ss"] += 1
-        if achieve >= 99.5000:
+        if achieve >= 99.5:
             output["ssp"] += 1
-        if achieve >= 100.0000:
+        if achieve >= 100.0:
             output["sss"] += 1
-        if achieve >= 100.5000:
+        if achieve >= 100.5:
             output["sssp"] += 1
 
         if fc:
@@ -250,15 +250,15 @@ def get_page_records(records, page):
 def dxscore_proc(dxscore, sum_dxscore):
     percentage = (dxscore / sum_dxscore) * 100
 
-    if percentage < 85.00:
+    if percentage < 85.0:
         return 0, 0
-    if percentage < 90.00:
+    if percentage < 90.0:
         return 1, 1
-    if percentage < 93.00:
+    if percentage < 93.0:
         return 1, 2
-    if percentage < 95.00:
+    if percentage < 95.0:
         return 2, 3
-    if percentage < 97.00:
+    if percentage < 97.0:
         return 2, 4
     return 3, 5
 
@@ -345,11 +345,11 @@ async def music_to_part(
     partbase = Image.open(partbase_path)
 
     # 歌曲封面
-    jacket_path = f"./Cache/Jacket/{song_id % 10000}.png"
+    jacket_path = f"./Cache/Jacket/{song_id % 1e4}.png"
     if not os.path.exists(jacket_path):
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"https://assets2.lxns.net/maimai/jacket/{song_id % 10000}.png"
+                f"https://assets2.lxns.net/maimai/jacket/{song_id % 1e4}.png"
             ) as resp:
                 with open(jacket_path, "wb") as fd:
                     async for chunk in resp.content.iter_chunked(1024):

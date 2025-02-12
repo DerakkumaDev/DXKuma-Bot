@@ -130,11 +130,11 @@ async def _(event: GroupMessageEvent):
         await openchars.update_game_data(group_id, game_data)
         if char_all_open:
             for i in char_all_open:
-                cover_path = f"./Cache/Jacket/{i[1] % 10000}.png"
+                cover_path = f"./Cache/Jacket/{i[1] % 1e4}.png"
                 if not os.path.exists(cover_path):
                     async with aiohttp.ClientSession() as session:
                         async with session.get(
-                            f"https://assets2.lxns.net/maimai/jacket/{i[1] % 10000}.png"
+                            f"https://assets2.lxns.net/maimai/jacket/{i[1] % 1e4}.png"
                         ) as resp:
                             with open(cover_path, "wb") as fd:
                                 async for chunk in resp.content.iter_chunked(1024):
@@ -179,11 +179,11 @@ async def _(event: GroupMessageEvent):
             return
 
         for i in guess_success:
-            cover_path = f"./Cache/Jacket/{i[1] % 10000}.png"
+            cover_path = f"./Cache/Jacket/{i[1] % 1e4}.png"
             if not os.path.exists(cover_path):
                 async with aiohttp.ClientSession() as session:
                     async with session.get(
-                        f"https://assets2.lxns.net/maimai/jacket/{i[1] % 10000}.png"
+                        f"https://assets2.lxns.net/maimai/jacket/{i[1] % 1e4}.png"
                     ) as resp:
                         with open(cover_path, "wb") as fd:
                             async for chunk in resp.content.iter_chunked(1024):
@@ -361,11 +361,11 @@ async def _(event: GroupMessageEvent):
                 MessageSegment.text("迪拉熊绘制中，稍等一下mai~"),
             )
         )
-        cover_path = f"./Cache/Jacket/{data["music_id"] % 10000}.png"
+        cover_path = f"./Cache/Jacket/{data["music_id"] % 1e4}.png"
         if not os.path.exists(cover_path):
             async with aiohttp.ClientSession() as session:
                 async with session.get(
-                    f"https://assets2.lxns.net/maimai/jacket/{data["music_id"] % 10000}.png"
+                    f"https://assets2.lxns.net/maimai/jacket/{data["music_id"] % 1e4}.png"
                 ) as resp:
                     with open(cover_path, "wb") as fd:
                         async for chunk in resp.content.iter_chunked(1024):
@@ -452,11 +452,11 @@ async def _(event: GroupMessageEvent):
                 ),
             )
         )
-        music_path = f"./Cache/Music/{data["music_id"] % 10000}.mp3"
+        music_path = f"./Cache/Music/{data["music_id"] % 1e4}.mp3"
         if not os.path.exists(music_path):
             async with aiohttp.ClientSession() as session:
                 async with session.get(
-                    f"https://assets2.lxns.net/maimai/music/{data["music_id"] % 10000}.mp3"
+                    f"https://assets2.lxns.net/maimai/music/{data["music_id"] % 1e4}.mp3"
                 ) as resp:
                     with open(music_path, "wb") as fd:
                         async for chunk in resp.content.iter_chunked(1024):
@@ -486,14 +486,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
             current_score = achi
 
         user_name = (await bot.get_stranger_info(user_id=qq))["nickname"]
-        rank_str = f"{current_index}. {user_name}：{math.trunc(achi * 10000) / 10000:.4%} × {times}"
+        rank_str = f"{current_index}. {user_name}：{math.trunc(achi * 1e6) / 1e6:.4%} × {times}"
         leaderboard_output.append(rank_str)
         if len(leaderboard_output) > 9:
             break
 
     avg = sum(d[1] for d in scores) / len(scores) if len(scores) > 0 else 0
     msg = "\r\n".join(leaderboard_output)
-    msg = f"猜歌准确率排行榜Top{len(leaderboard_output)}：\r\n{msg}\r\n\r\n玩家数：{len(leaderboard)}/{len(scores)}\r\n平均达成率：{math.trunc(avg * 10000) / 10000:.4%}"
+    msg = f"猜歌准确率排行榜Top{len(leaderboard_output)}：\r\n{msg}\r\n\r\n玩家数：{len(leaderboard)}/{len(scores)}\r\n平均达成率：{math.trunc(avg * 1e6) / 1e6:.4%}"
     await rank.send(msg)
 
 
@@ -529,9 +529,9 @@ async def _(bot: Bot, event: GroupMessageEvent):
 
             user_name = (await bot.get_stranger_info(user_id=qq))["nickname"]
             if i == index:
-                rank_str = f"{current_index}. {user_name}：{math.trunc(achi * 10000) / 10000:.4%}"
+                rank_str = f"{current_index}. {user_name}：{math.trunc(achi * 1e6) / 1e6:.4%}"
             else:
-                rank_str = f"{current_index}. {user_name}：{math.trunc(achi * 10000) / 10000:.4%} × {times}"
+                rank_str = f"{current_index}. {user_name}：{math.trunc(achi * 1e6) / 1e6:.4%} × {times}"
 
             leaderboard_output.append(rank_str)
 

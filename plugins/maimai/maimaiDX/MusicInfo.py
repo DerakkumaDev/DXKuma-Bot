@@ -54,11 +54,11 @@ async def music_info(song_data):
     bg = Image.open("./Static/maimai/musicinfo_bg.png")
 
     # 歌曲封面
-    cover_path = f"./Cache/Jacket/{int(song_data["id"]) % 10000}.png"
+    cover_path = f"./Cache/Jacket/{int(song_data["id"]) % 1e4}.png"
     if not os.path.exists(cover_path):
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"https://assets2.lxns.net/maimai/jacket/{int(song_data["id"]) % 10000}.png"
+                f"https://assets2.lxns.net/maimai/jacket/{int(song_data["id"]) % 1e4}.png"
             ) as resp:
                 with open(cover_path, "wb") as fd:
                     async for chunk in resp.content.iter_chunked(1024):
@@ -251,11 +251,11 @@ async def play_info(data, song_data):
     bg = Image.open("./Static/maimai/playinfo_bg.png")
 
     # 歌曲封面
-    cover_path = f"./Cache/Jacket/{int(song_data["id"]) % 10000}.png"
+    cover_path = f"./Cache/Jacket/{int(song_data["id"]) % 1e4}.png"
     if not os.path.exists(cover_path):
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"https://assets2.lxns.net/maimai/jacket/{int(song_data["id"]) % 10000}.png"
+                f"https://assets2.lxns.net/maimai/jacket/{int(song_data["id"]) % 1e4}.png"
             ) as resp:
                 with open(cover_path, "wb") as fd:
                     async for chunk in resp.content.iter_chunked(1024):
@@ -483,11 +483,11 @@ async def utage_music_info(song_data, index=0):
     bg = Image.open("./Static/maimai/utage_musicinfo_bg.png")
 
     # 歌曲封面
-    cover_path = f"./Cache/Jacket/{int(song_data["id"]) % 10000}.png"
+    cover_path = f"./Cache/Jacket/{int(song_data["id"]) % 1e4}.png"
     if not os.path.exists(cover_path):
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"https://assets2.lxns.net/maimai/jacket/{int(song_data["id"]) % 10000}.png"
+                f"https://assets2.lxns.net/maimai/jacket/{int(song_data["id"]) % 1e4}.png"
             ) as resp:
                 with open(cover_path, "wb") as fd:
                     async for chunk in resp.content.iter_chunked(1024):
@@ -638,11 +638,11 @@ async def score_info(song_data, index):
     )
 
     # 歌曲封面
-    cover_path = f"./Cache/Jacket/{int(song_data["id"]) % 10000}.png"
+    cover_path = f"./Cache/Jacket/{int(song_data["id"]) % 1e4}.png"
     if not os.path.exists(cover_path):
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"https://assets2.lxns.net/maimai/jacket/{int(song_data["id"]) % 10000}.png"
+                f"https://assets2.lxns.net/maimai/jacket/{int(song_data["id"]) % 1e4}.png"
             ) as resp:
                 with open(cover_path, "wb") as fd:
                     async for chunk in resp.content.iter_chunked(1024):
@@ -744,7 +744,7 @@ async def score_info(song_data, index):
         bg = paste(bg, plus_icon, (302, 953))
         drawtext = ImageDraw.Draw(bg)
     drawtext.text(
-        (251, 1000), song_level, anchor="mm", font=ttf, fill=level_color[index]
+        (251, 1e3), song_level, anchor="mm", font=ttf, fill=level_color[index]
     )
 
     # 分数
@@ -783,7 +783,7 @@ async def score_info(song_data, index):
                     )
                     score += ex_score / 100
                 if score > 0:
-                    score_text = f"{-(math.trunc(score * 10000) / 10000):.4%}"
+                    score_text = f"{-(math.trunc(score * 1e6) / 1e6):.4%}"
                     drawtext.text(
                         score_position,
                         score_text,

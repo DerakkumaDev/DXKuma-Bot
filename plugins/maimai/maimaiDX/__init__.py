@@ -396,8 +396,8 @@ async def get_info_by_name(name, music_type, songList):
             ):
                 if song_info["type"] != "SD":
                     rep_ids.remove(song_id)
-        elif song_info["type"] != "DX" or str(id_int % 10000) not in rep_ids:
-            other_id = str(id_int + 10000)
+        elif song_info["type"] != "DX" or str(id_int % 1e4) not in rep_ids:
+            other_id = str(id_int + 1e4)
             if other_id in rep_ids:
                 continue
             other_info = find_song_by_id(other_id, songList)
@@ -1929,11 +1929,11 @@ async def _(event: MessageEvent):
     await playaudio.send(
         MessageSegment.text(f"迪拉熊正在准备播放{songname}，稍等一下mai~")
     )
-    music_path = f"./Cache/Music/{int(song_info["id"]) % 10000}.mp3"
+    music_path = f"./Cache/Music/{int(song_info["id"]) % 1e4}.mp3"
     if not os.path.exists(music_path):
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"https://assets2.lxns.net/maimai/music/{int(song_info["id"]) % 10000}.mp3"
+                f"https://assets2.lxns.net/maimai/music/{int(song_info["id"]) % 1e4}.mp3"
             ) as resp:
                 with open(music_path, "wb") as fd:
                     async for chunk in resp.content.iter_chunked(1024):
@@ -2101,7 +2101,7 @@ async def _(event: MessageEvent):
                 MessageSegment.image(Path("./Static/Maimai/Function/1.png")),
             )
         )
-    song_id = int(song_info["id"]) - 10000
+    song_id = int(song_info["id"]) - 1e4
     alias = set()
     alias_list = await get_alias_list_lxns()
     for d in alias_list["aliases"]:
@@ -2109,11 +2109,11 @@ async def _(event: MessageEvent):
             alias |= set(d["aliases"])
     alias_list = await get_alias_list_xray()
     for id, d in alias_list.items():
-        if int(id) - 10000 == song_id:
+        if int(id) - 1e4 == song_id:
             alias |= set(d)
     alias_list = await get_alias_list_ycn()
     for d in alias_list["content"]:
-        if d["SongID"] - 10000 == song_id:
+        if d["SongID"] - 1e4 == song_id:
             alias |= set(d["Alias"])
     if not alias:
         msg = (
